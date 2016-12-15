@@ -22,12 +22,12 @@ Edit /srv/pillar/mattermost.sls
   cd salt-mattermost/
   cp salt-latest.repo /etc/yum.repos.d/
   cp saltstack-signing-key /etc/pki/rpm-gpg/
-  cp grains /etc/salt/
-
+  
   yum -y install salt-minion salt-master
-
+  
+  cp grains /etc/salt/
   sed -i s/'#master: salt'/'master: localhost'/g /etc/salt/minion
-
+  
   systemctl enable salt-master ; systemctl start salt-master
   systemctl enable salt-minion ; sleep 2 ; systemctl start salt-minion 
 
