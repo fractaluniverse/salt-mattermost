@@ -57,6 +57,11 @@ mattermost-unpacked:
     - template: jinja
     - source: salt://mattermost.service
 
+mattermost-service:
+  service.running:
+    - name: mattermost
+    - enabled: True
+
 #/opt/mattermost:
 #  file.symlink:
 #    - target: /opt/mattermost-{{ pillar['version_mattermost'] }}-linux-amd64/
