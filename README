@@ -22,6 +22,7 @@ Edit /srv/pillar/mattermost.sls
   cd salt-mattermost/
   cp salt-latest.repo /etc/yum.repos.d/
   cp saltstack-signing-key /etc/pki/rpm-gpg/
+  cp grains /etc/salt/
 
   yum -y install salt-minion salt-master
 
