@@ -60,7 +60,7 @@ mattermost-unpacked:
 mattermost-service:
   service.running:
     - name: mattermost
-    - enabled: True
+    - enable: True
 
 #/opt/mattermost:
 #  file.symlink:
