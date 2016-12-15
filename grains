@@ -1,0 +1,4 @@
+roles:
+  - mattermost
+  - nginx-EL7-lxbrand
+  - mattermost-nginx

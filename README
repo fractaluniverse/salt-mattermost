@@ -10,7 +10,7 @@ TODO:
 
 On a fresh Zone as root
   yum -y install epel-release ; yum -y install certbot
-  certbot certonly --standalone --rsa-key-size 4096 $FQDN
+  certbot certonly --standalone --rsa-key-size 4096 -d $FQDN
 
   git clone https://github.com/fractaluniverse/salt-mattermost.git
   mkdir /srv
@@ -19,7 +19,7 @@ On a fresh Zone as root
 
 Edit /srv/pillar/mattermost.sls
 
-
+  cd salt-mattermost/
   cp salt-latest.repo /etc/yum.repos.d/
   cp saltstack-signing-key /etc/pki/rpm-gpg/
 
