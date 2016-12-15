@@ -1,0 +1,37 @@
+A quick and dirty  state.highstate  to a Mattermost instance up and running in an LX-Brand CentOS-7 Zone
+
+TODO:
+  The Postgres version should have a Pillar variable.
+  The Mattermost "platform" string (eg: linux-amd64) shoud be a Pillar variable.
+  There should be a Jenkins instance dedicated to producing a Mattermost artifact from source.
+  Automate certbot piece
+  Maybe write a "setup.sh" script
+
+
+On a fresh Zone as root
+  yum -y install epel-release ; yum -y install certbot
+  certbot certonly --standalone --rsa-key-size 4096 $FQDN
+
+  git clone https://github.com/fractaluniverse/salt-mattermost.git
+  mkdir /srv
+  mv salt-mattermost/{pillar,salt} /srv/
+
+
+Edit /srv/pillar/mattermost.sls
+
+
+  cp salt-latest.repo /etc/yum.repos.d/
+  cp saltstack-signing-key /etc/pki/rpm-gpg/
+
+  yum -y install salt-minion salt-master
+
+  sed -i s/'#master: salt'/'master: localhost'/g /etc/salt/minion
+
+  systemctl enable salt-master ; systemctl start salt-master
+  systemctl enable salt-minion ; sleep 2 ; systemctl start salt-minion 
+
+  sleep 5
+
+  salt-key -A -y
+
+  salt '*' state.highstate

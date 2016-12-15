@@ -1,0 +1,2 @@
+golang-bin:
+  pkg.installed
